@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Felices 2 Meses 💙</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #58c7f3, #bdefff, #ffffff);
+            color: #075985;
+            text-align: center;
+        }
+
+        /* Corazones flotantes */
+        .corazon {
+            position: fixed;
+            bottom: -50px;
+            font-size: 25px;
+            animation: subir 7s linear infinite;
+            opacity: 0.8;
+            z-index: 1;
+        }
+
+        @keyframes subir {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Encabezado */
+        header {
+            padding: 35px 20px 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .escudo {
+            width: 110px;
+            height: 110px;
+            margin: auto;
+            border-radius: 50%;
+            background: white;
+            border: 7px solid #0ea5e9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 55px;
+            box-shadow: 0 0 25px rgba(0, 120, 200, 0.4);
+            animation: latido 2s infinite;
+        }
+
+        @keyframes latido {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.08);
+            }
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 42px;
+            color: #0369a1;
+            text-shadow: 2px 2px white;
+        }
+
+        .subtitulo {
+            margin-top: 10px;
+            font-size: 20px;
+            color: #075985;
+        }
+
+        /* Tarjeta */
+        .contenedor {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 45px 20px;
+        }
+
+        .tarjeta {
+            width: 350px;
+            height: 460px;
+            perspective: 1200px;
+        }
+
+        .tarjeta-interior {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+        }
+
+        .tarjeta.abierta .tarjeta-interior {
+            transform: rotateY(180deg);
+        }
+
+        .frente,
+        .detras {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 25px;
+            backface-visibility: hidden;
+            box-shadow: 0 15px 35px rgba(0, 80, 130, 0.25);
+        }
+
+        .frente {
+            background: linear-gradient(160deg, #ffffff, #dff7ff);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 4px solid #38bdf8;
+        }
+
+        .frente h2 {
+            font-size: 34px;
+            color: #0284c7;
+        }
+
+        .frente .corazon-grande {
+            font-size: 90px;
+            margin: 30px;
+            animation: latido 1.5s infinite;
+        }
+
+        .frente p {
+            font-size: 18px;
+            padding: 0 25px;
+        }
+
+        button {
+            margin-top: 25px;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 30px;
+            background: #0284c7;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 100, 180, 0.3);
+        }
+
+        button:hover {
+            transform: scale(1.08);
+            background: #0369a1;
+        }
+
+        .detras {
+            transform: rotateY(180deg);
+            background: linear-gradient(160deg, #ffffff, #e0f7ff);
+            padding: 30px 25px;
+            overflow-y: auto;
+        }
+
+        .detras h2 {
+            color: #0284c7;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .detras p {
+            font-size: 17px;
+            line-height: 1.7;
+            text-align: left;
+            color: #164e63;
+        }
+
+        .firma {
+            margin-top: 25px;
+            font-size: 21px;
+            font-weight: bold;
+            color: #0284c7;
+        }
+
+        /* Contador */
+        .contador {
+            position: relative;
+            z-index: 2;
+            margin: 20px auto 40px;
+            max-width: 700px;
+            padding: 30px;
+            background: rgba(255,255,255,0.75);
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 80, 130, 0.15);
+        }
+
+        .contador h2 {
+            font-size: 27px;
+            margin-bottom: 20px;
+            color: #0369a1;
+        }
+
+        .tiempo {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .caja {
+            background: #0284c7;
+            color: white;
+            padding: 15px;
+            min-width: 90px;
+            border-radius: 15px;
+        }
+
+        .numero {
+            display: block;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .texto {
+            font-size: 13px;
+        }
+
+        /* Frase final */
+        .final {
+            position: relative;
+            z-index: 2;
+            margin: 40px 20px;
+            padding: 30px;
+        }
+
+        .final h2 {
+            font-size: 32px;
+            color: #0369a1;
+        }
+
+        .final p {
+            font-size: 19px;
+            margin-top: 15px;
+        }
+
+        footer {
+            position: relative;
+            z-index: 2;
+            background: #0369a1;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        @media(max-width: 500px) {
+            h1 {
+                font-size: 32px;
+            }
+
+            .tarjeta {
+                width: 320px;
+                height: 450px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Corazones -->
+    <div class="corazon" style="left:5%; animation-delay:0s;">💙</div>
+    <div class="corazon" style="left:15%; animation-delay:2s;">🤍</div>
+    <div class="corazon" style="left:30%; animation-delay:4s;">💙</div>
+    <div class="corazon" style="left:50%; animation-delay:1s;">💙</div>
+    <div class="corazon" style="left:70%; animation-delay:3s;">🤍</div>
+    <div class="corazon" style="left:85%; animation-delay:5s;">💙</div>
+
+    <header>
+
+        <div class="escudo">
+            ⚽
+        </div>
+
+        <h1>💙 Felices 2 Meses 💙</h1>
+
+        <p class="subtitulo">
+            Una pequeña sorpresa para la persona que hace mis días más bonitos ✨
+        </p>
+
+    </header>
+
+
+    <!-- TARJETA -->
+    <div class="contenedor">
+
+        <div class="tarjeta" id="tarjeta">
+
+            <div class="tarjeta-interior">
+
+                <!-- Frente -->
+                <div class="frente">
+
+                    <h2>Para mi amor 💙</h2>
+
+                    <div class="corazon-grande">
+                        💙
+                    </div>
+
+                    <p>
+                        Tengo una pequeña sorpresa preparada para ti...
+                    </p>
+
+                    <button onclick="abrirTarjeta()">
+                        💌 Abrir mi carta
+                    </button>
+
+                </div>
+
+
+                <!-- Parte posterior -->
+                <div class="detras">
+
+                    <h2>💙 Para ti 💙</h2>
+
+                    <p>
+                        Hoy cumplimos <b>2 meses juntos</b>, y aunque pueda
+                        parecer poquito tiempo, para mí han sido dos meses
+                        llenos de momentos especiales, sonrisas, conversaciones
+                        y recuerdos que quiero guardar siempre.
+                    </p>
+
+                    <br>
+
+                   <p>
+        Gracias por cada momento que hemos compartido durante estos
+        dos meses y por todas esas pequeñas cosas que han hecho que este tiempo
+        a tu lado sea tan especial para mí.
+    </p>
+
+    <br>
+
+    <p>
+        Me siento muy feliz de tenerte a mi lado y de poder seguir
+        conociéndote, compartiendo momentos contigo y construyendo
+        poco a poco nuestra historia. 💙
+    </p>
+
+    <br>
+
+    <p>
+        Quiero que sigamos guardando momentos inolvidables, de esos
+        que algún día podamos recordar con una sonrisa y decir:
+        <b>"Mira todo lo bonito que vivimos juntos".</b> ✨
+    </p>
+
+    <br>
+
+    <p>
+        Espero que estos dos meses sean solamente el comienzo de
+        muchos más momentos, aventuras, risas y recuerdos inolvodables juntos.
+        Gracias por estar conmigo y por hacerme tan feliz.
+    </p>
+
+    <div class="firma">
+        Felices 2 meses, mi amor. 💙🥰<br>
+        Te amo. ❤️
+    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CONTADOR -->
+    <section class="contador">
+
+        <h2>⏳ Nuestro tiempo juntos 💙</h2>
+
+        <div class="tiempo">
+
+            <div class="caja">
+                <span class="numero" id="dias">00</span>
+                <span class="texto">Días</span>
+            </div>
+
+            <div class="caja">
+                <span class="numero" id="horas">00</span>
+                <span class="texto">Horas</span>
+            </div>
+
+            <div class="caja">
+                <span class="numero" id="minutos">00</span>
+                <span class="texto">Minutos</span>
+            </div>
+
+            <div class="caja">
+                <span class="numero" id="segundos">00</span>
+                <span class="texto">Segundos</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+ <!-- MENSAJE FINAL -->
+<section class="final">
+
+    <h2>
+        💙✨ Felices 2 meses, mi amor ✨💙
+    </h2>
+
+    <p>
+        Gracias por hacer estos dos meses tan especiales. 🥰
+    </p>
+
+</section>
+
+
+    <footer>
+        Hecho con muchísimo cariño para ti 💙
+    </footer>
+
+
+    <script>
+
+        // Abrir tarjeta
+        function abrirTarjeta() {
+
+            document
+                .getElementById("tarjeta")
+                .classList.toggle("abierta");
+
+        }
+
+
+        // CAMBIA ESTA FECHA POR LA FECHA EN QUE EMPEZARON
+        const fechaInicio = new Date("2026-06-14T00:00:00");
+
+
+        function actualizarContador() {
+
+            const ahora = new Date();
+
+            const diferencia = ahora - fechaInicio;
+
+            const segundosTotales =
+                Math.floor(diferencia / 1000);
+
+            const dias =
+                Math.floor(segundosTotales / 86400);
+
+            const horas =
+                Math.floor((segundosTotales % 86400) / 3600);
+
+            const minutos =
+                Math.floor((segundosTotales % 3600) / 60);
+
+            const segundos =
+                segundosTotales % 60;
+
+
+            document.getElementById("dias").textContent =
+                String(dias).padStart(2, "0");
+
+            document.getElementById("horas").textContent =
+                String(horas).padStart(2, "0");
+
+            document.getElementById("minutos").textContent =
+                String(minutos).padStart(2, "0");
+
+            document.getElementById("segundos").textContent =
+                String(segundos).padStart(2, "0");
+
+        }
+
+        setInterval(actualizarContador, 1000);
+
+        actualizarContador();
+
+    </script>
+
+</body>
+</html>
